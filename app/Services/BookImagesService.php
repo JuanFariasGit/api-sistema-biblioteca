@@ -11,9 +11,4 @@ class BookImagesService extends Service
     {   
         return app(BookImages::class);
     }
-
-    public function all(): Collection
-    {
-        return $this->model()::all();
-    }
 } 

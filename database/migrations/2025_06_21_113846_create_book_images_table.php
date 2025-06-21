@@ -17,8 +17,9 @@ return new class extends Migration
                   ->constrained()
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-            $table->string('path_image');
+            $table->string('image');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
