@@ -23,7 +23,7 @@ class StoreBookImagesRequest extends FormRequest
     {
         return [
             'image' => 'required|image',
-            'book_id' => 'required|uuid'
+            'book_id' => 'required|uuid|exists:books,id'
         ];
     }
 }

@@ -9,24 +9,17 @@ use App\Services\BookService;
 
 class BookImagesController extends Controller
 {
-     public function __construct(
-        private BookImagesService $bookImagesService,
-        private BookService $bookService
-    )
+     public function __construct(private BookImagesService $bookImagesService)
     {
     }
 
     public function store(StoreBookImagesRequest $request)
     {
         $validated = $request->validated();
-
-        if ($this->bookService->findById($validated['book_id'])) {
-            $data = $this->bookService->create($validated);
+       
+        $data = $this->bookImagesService->create($validated);
     
-            return new BookImagesResource($data);
-        }
-
-        abort(404, 'Not found');
+        return new BookImagesResource($data);
     }
 
     public function destroy(string $id)
