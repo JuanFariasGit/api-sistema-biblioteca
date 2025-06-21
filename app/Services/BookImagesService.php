@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\Publisher;
+use App\Models\BookImages;
 use Illuminate\Database\Eloquent\Collection;
 
-class PublisherService extends Service
+class BookImagesService extends Service
 {
-    protected function model(): Publisher
+    protected function model(): BookImages
     {   
-        return app(Publisher::class);
+        return app(BookImages::class);
     }
 
     public function all(): Collection

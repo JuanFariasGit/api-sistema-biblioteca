@@ -16,24 +16,4 @@ class BookService extends Service
     {
         return $this->model()::with(['publisher'])->paginate(5);
     }
-
-    public function findById(string $id): ?Book
-    {
-        return $this->model()::find($id);
-    }
-
-    public function create(array $data)
-    {
-        return $this->model()::create($data);
-    }
-
-    public function update(Book $Book, $data)
-    {
-        return $Book->update($data);
-    }
-
-    public function delete(Book $Book)
-    {
-        return $Book->delete();
-    }
 } 

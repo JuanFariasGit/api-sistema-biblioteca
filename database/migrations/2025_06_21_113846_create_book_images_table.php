@@ -11,19 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('book_images', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('publisher_id')
+            $table->foreignUuid('book_id')
                   ->constrained()
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-            $table->string('title');
-            $table->string('subtitle');
-            $table->string('author', 100);
-            $table->unsignedTinyInteger('publication_year');
-            $table->string('edition');
+            $table->string('path_image');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('book_images');
     }
 };
