@@ -22,7 +22,7 @@ class UpdateBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'publisher_id' => 'required|uuid',
+            'publisher_id' => 'required|uuid|exists:publishers,id',
             'title' => 'required|string|min:4|max:255',
             'subtitle' => 'required|string|min:4|max:255',
             'author' => 'required|string|min:4|max:100',
