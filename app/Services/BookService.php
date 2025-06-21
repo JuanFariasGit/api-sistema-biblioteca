@@ -14,7 +14,7 @@ class BookService extends Service
 
     public function all(): LengthAwarePaginator
     {
-        return $this->model()::paginate(5);
+        return $this->model()::with(['publisher'])->paginate(5);
     }
 
     public function findById(string $id): ?Book

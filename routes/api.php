@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublisherController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,5 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::apiResource('publishers', PublisherController::class)->middleware('auth:api');
+
+Route::apiResource('books', BookController::class)->middleware('auth:api');

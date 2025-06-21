@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Publisher;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PublisherService extends Service
@@ -12,9 +13,9 @@ class PublisherService extends Service
         return app(Publisher::class);
     }
 
-    public function all(): LengthAwarePaginator
+    public function all(): Collection
     {
-        return $this->model()::paginate(5);
+        return $this->model()::all();
     }
 
     public function findById(string $id): ?Publisher
