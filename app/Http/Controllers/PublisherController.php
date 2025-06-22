@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
 use App\Http\Resources\PublisherResource;
+use App\Models\Publisher;
 use App\Services\PublisherService;
 
 class PublisherController extends Controller
@@ -20,15 +21,9 @@ class PublisherController extends Controller
         return PublisherResource::collection($data);
     }
 
-    public function show(string $id)
+    public function show(Publisher $publisher)
     {
-        $data = $this->publisherService->findById($id);
-
-        if ($data) {
-            return new PublisherResource($data);
-        }
-
-        abort(404, 'Not found');
+        return new PublisherResource($publisher);
     }
 
     public function store(StorePublisherRequest $request)
@@ -40,23 +35,15 @@ class PublisherController extends Controller
         return new PublisherResource($data);
     }
 
-    public function update(UpdatePublisherRequest $request, string $id)
+    public function update(UpdatePublisherRequest $request, Publisher $publisher)
     {
         $validated = $request->validated();
 
-        if ($publisher = $this->publisherService->findById($id)) {
-            return $this->publisherService->update($publisher, $validated);
-        }
-
-        abort(404, 'Not Found');
+        return $this->publisherService->update($publisher, $validated);
     }
 
-    public function destroy(string $id)
+    public function destroy(Publisher $publisher)
     {
-        if ($publisher = $this->publisherService->findById($id)) {
-            return $this->publisherService->delete($publisher);
-        }
-
-        abort(404, 'Not Found');
+        return $this->publisherService->delete($publisher);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
+use App\Models\Book;
 use App\Services\BookService;
 
 class BookController extends Controller
@@ -20,15 +21,9 @@ class BookController extends Controller
         return BookResource::collection($data);
     }
 
-    public function show(string $id)
+    public function show(Book $book)
     {
-        $data = $this->bookService->findById($id);
-
-        if ($data) {
-            return new BookResource($data);
-        }
-
-        abort(404, 'Not found');
+        return new BookResource($book);
     }
 
     public function store(StoreBookRequest $request)
@@ -40,23 +35,15 @@ class BookController extends Controller
         return new BookResource($data);
     }
 
-    public function update(UpdateBookRequest $request, string $id)
+    public function update(UpdateBookRequest $request, Book $book)
     {
         $validated = $request->validated();
 
-        if ($book = $this->bookService->findById($id)) {
-            return $this->bookService->update($book, $validated);
-        }
-
-        abort(404, 'Not Found');
+        return $this->bookService->update($book, $validated);
     }
 
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        if ($book = $this->bookService->findById($id)) {
-            return $this->bookService->delete($book);
-        }
-
-        abort(404, 'Not Found');
+        return $this->bookService->delete($book);
     }
 }

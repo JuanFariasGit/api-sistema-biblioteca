@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBookImagesRequest;
 use App\Http\Resources\BookImagesResource;
+use App\Models\BookImages;
 use App\Services\BookImagesService;
 use App\Services\BookService;
 
@@ -22,12 +23,8 @@ class BookImagesController extends Controller
         return new BookImagesResource($data);
     }
 
-    public function destroy(string $id)
+    public function destroy(BookImages $bookImages)
     {
-        if ($book = $this->bookImagesService->findById($id)) {
-            return $this->bookImagesService->delete($book);
-        }
-
-        abort(404, 'Not Found');
+        return $this->bookImagesService->delete($bookImages);
     }
 }
