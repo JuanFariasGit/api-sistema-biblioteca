@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->string('author', 100);
-            $table->unsignedTinyInteger('publication_year');
+            $table->unsignedInteger('publication_year');
             $table->string('edition');
             $table->timestamps();
             $table->softDeletes();

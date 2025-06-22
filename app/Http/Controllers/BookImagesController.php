@@ -6,7 +6,6 @@ use App\Http\Requests\StoreBookImagesRequest;
 use App\Http\Resources\BookImagesResource;
 use App\Models\BookImages;
 use App\Services\BookImagesService;
-use App\Services\BookService;
 
 class BookImagesController extends Controller
 {

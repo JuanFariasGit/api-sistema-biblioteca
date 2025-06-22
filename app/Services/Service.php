@@ -8,11 +8,6 @@ abstract class Service
 {
     abstract protected function model(): Model;
 
-    public function findById(string $id): ?Model
-    {
-        return $this->model()::find($id);
-    }
-
     public function create(array $data)
     {
         return $this->model()::create($data);
