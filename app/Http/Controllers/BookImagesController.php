@@ -22,8 +22,8 @@ class BookImagesController extends Controller
         return new BookImagesResource($data);
     }
 
-    public function destroy(BookImages $bookImages)
+    public function destroy(BookImages $book_image)
     {
-        return $this->bookImagesService->delete($bookImages);
+        return $this->bookImagesService->delete($book_image);
     }
 }
