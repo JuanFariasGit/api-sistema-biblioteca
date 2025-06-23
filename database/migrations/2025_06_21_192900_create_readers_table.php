@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();            
             $table->char('cpf', 11);
             $table->string('full_name', 100);
+            $table->date('birthday');
             $table->char('cellphone', 11);
             $table->char('zip_code', 9);
             $table->string('street');

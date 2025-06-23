@@ -29,6 +29,7 @@ class StoreReaderRequest extends FormRequest
                                     new CPF
                                 ],
             'full_name' => 'required|min:4|max:255',
+            'birthday' => 'required|date',
             'cellphone' => 'required|min:11|max:11',
             'zip_code' => 'required|min:9|max:9',
             'street' => 'required|max:255',
