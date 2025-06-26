@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Models\BookImages;
-use Illuminate\Database\Eloquent\Collection;
 
-class BookImagesService extends Service
+class BookImagesRepository extends Repository
 {
     protected function model(): BookImages
     {   

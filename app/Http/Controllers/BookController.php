@@ -6,17 +6,17 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
-use App\Services\BookService;
+use App\Repositories\BookRepository;
 
 class BookController extends Controller
 {
-     public function __construct(private BookService $bookService)
+     public function __construct(private BookRepository $bookRepository)
     {
     }
 
     public function index()
     {
-        $data = $this->bookService->all();
+        $data = $this->bookRepository->paginate();
 
         return BookResource::collection($data);
     }
@@ -30,7 +30,7 @@ class BookController extends Controller
     {
         $validated = $request->validated();
 
-        $data = $this->bookService->create($validated);
+        $data = $this->bookRepository->create($validated);
 
         return new BookResource($data);
     }
@@ -39,11 +39,11 @@ class BookController extends Controller
     {
         $validated = $request->validated();
 
-        return $this->bookService->update($book, $validated);
+        return $this->bookRepository->update($book, $validated);
     }
 
     public function destroy(Book $book)
     {
-        return $this->bookService->delete($book);
+        return $this->bookRepository->delete($book);
     }
 }

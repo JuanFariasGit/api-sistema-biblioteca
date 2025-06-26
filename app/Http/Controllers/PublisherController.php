@@ -6,17 +6,17 @@ use App\Http\Requests\StorePublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
 use App\Http\Resources\PublisherResource;
 use App\Models\Publisher;
-use App\Services\PublisherService;
+use App\Repositories\PublisherRepository;
 
 class PublisherController extends Controller
 {
-    public function __construct(private PublisherService $publisherService)
+    public function __construct(private PublisherRepository $publisherRepository)
     {
     }
 
     public function index()
     {
-        $data = $this->publisherService->all();
+        $data = $this->publisherRepository->all();
 
         return PublisherResource::collection($data);
     }
@@ -30,7 +30,7 @@ class PublisherController extends Controller
     {
         $validated = $request->validated();
 
-        $data = $this->publisherService->create($validated);
+        $data = $this->publisherRepository->create($validated);
 
         return new PublisherResource($data);
     }
@@ -39,11 +39,11 @@ class PublisherController extends Controller
     {
         $validated = $request->validated();
 
-        return $this->publisherService->update($publisher, $validated);
+        return $this->publisherRepository->update($publisher, $validated);
     }
 
     public function destroy(Publisher $publisher)
     {
-        return $this->publisherService->delete($publisher);
+        return $this->publisherRepository->delete($publisher);
     }
 }

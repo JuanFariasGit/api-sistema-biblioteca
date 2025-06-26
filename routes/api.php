@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\BookImagesController;
-use App\Http\Controllers\PublisherController;
-use App\Http\Controllers\ReaderController;
+use App\Http\Controllers\{
+    AuthController,
+    BookController,
+    BookImagesController,
+    PublisherController,
+    ReaderController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {

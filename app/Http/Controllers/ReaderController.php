@@ -6,17 +6,17 @@ use App\Http\Requests\StoreReaderRequest;
 use App\Http\Requests\UpdateReaderRequest;
 use App\Http\Resources\ReaderResource;
 use App\Models\Reader;
-use App\Services\ReaderService;
+use App\Repositories\ReaderRepository;
 
 class ReaderController extends Controller
 {
-     public function __construct(private ReaderService $readerService)
+     public function __construct(private ReaderRepository $readerRepository)
     {
     }
 
     public function index()
     {
-        $data = $this->readerService->all();
+        $data = $this->readerRepository->paginate();
 
         return ReaderResource::collection($data);
     }
@@ -30,7 +30,7 @@ class ReaderController extends Controller
     {
         $validated = $request->validated();
 
-        $data = $this->readerService->create($validated);
+        $data = $this->readerRepository->create($validated);
 
         return new ReaderResource($data);
     }
@@ -39,11 +39,11 @@ class ReaderController extends Controller
     {
         $validated = $request->validated();
 
-        return $this->readerService->update($reader, $validated);
+        return $this->readerRepository->update($reader, $validated);
     }
 
     public function destroy(Reader $reader)
     {
-        return $this->readerService->delete($reader);
+        return $this->readerRepository->delete($reader);
     }
 }
