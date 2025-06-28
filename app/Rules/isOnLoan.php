@@ -24,6 +24,11 @@ class isOnLoan implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        if ($this->lending_date > $this->due_date) {
+            $fail('A data de emprestimo deve ser menor que a data de entrega.');
+            return;
+        }
+
         $query =  Lending::where('book_id', $value)
                     ->where('lending_date', '<=', $this->lending_date)
                     ->where('due_date', '>=', $this->due_date);
