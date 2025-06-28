@@ -10,8 +10,8 @@ class isOnLoan implements ValidationRule
 {
 
     public function __construct(
-        private string $lending_date,
-        private string $due_date, 
+        private ?string $lending_date = null,
+        private ?string $due_date = null, 
         private ?int $id = null
     )
     {
