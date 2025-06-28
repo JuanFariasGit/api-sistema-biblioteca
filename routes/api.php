@@ -33,5 +33,4 @@ Route::apiResource('book-images', BookImagesController::class)
     ->middleware('auth:api');
 
 Route::apiResource('lendings', LendingController::class)
-    ->only(['store', 'destroy'])
     ->middleware('auth:api');

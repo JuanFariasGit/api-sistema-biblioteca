@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\isOnLoan;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLendingRequest extends FormRequest
+class UpdateLendingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,8 @@ class StoreLendingRequest extends FormRequest
             'reader_id' => 'required|uuid|exists:readers,id',
             'book_id' => ['required', 'uuid', 'exists:books,id', new isOnLoan(
                 $this->lending_date, 
-                $this->due_date
+                $this->due_date,
+                $this->lending->id
             )]
         ];
     }

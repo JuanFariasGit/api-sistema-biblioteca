@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lending extends Model
@@ -20,8 +21,18 @@ class Lending extends Model
     protected function casts(): array
     {
         return [
-            'lending_date' => 'datetime:Y-m-d',
-            'due_date' => 'datetime:Y-m-d',
+            'lending_date' => 'date:Y-m-d',
+            'due_date' => 'date:Y-m-d',
         ];
+    }
+
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    public function reader(): BelongsTo
+    {
+        return $this->belongsTo(Reader::class);
     }
 }

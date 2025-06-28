@@ -14,6 +14,12 @@ class LendingResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'lending_date' => $this->lending_date,
+            'due_date' => $this->due_date,
+            'book' => $this->book,
+            'reader' => $this->reader
+        ];
     }
 }

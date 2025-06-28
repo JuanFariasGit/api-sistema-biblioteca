@@ -12,7 +12,7 @@ class isOnLoan implements ValidationRule
     public function __construct(
         private ?string $lending_date = null,
         private ?string $due_date = null, 
-        private ?int $id = null
+        private ?string $id = null
     )
     {
     }
@@ -32,11 +32,11 @@ class isOnLoan implements ValidationRule
         $query =  Lending::where('book_id', $value)
                     ->where('lending_date', '<=', $this->lending_date)
                     ->where('due_date', '>=', $this->due_date);
-
+        
         if ($this->id) {
             $query = $query->where('id', '<>', $this->id);
         }
-       
+
         if ($query->first()) {
             $fail('O livro se encontra emprestado no momento.');
         }
