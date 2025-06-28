@@ -28,11 +28,11 @@ class Lending extends Model
 
     public function book(): BelongsTo
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class)->whereNull('deleted_at');
     }
 
     public function reader(): BelongsTo
     {
-        return $this->belongsTo(Reader::class);
+        return $this->belongsTo(Reader::class)->whereNull('deleted_at');
     }
 }

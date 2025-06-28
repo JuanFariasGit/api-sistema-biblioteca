@@ -18,7 +18,7 @@ class Book extends Model
 
     public function publisher(): BelongsTo
     {
-        return $this->belongsTo(Publisher::class);
+        return $this->belongsTo(Publisher::class)->whereNull('deleted_at');
     }
 
     public function images(): HasMany
@@ -28,6 +28,8 @@ class Book extends Model
 
     public function readers(): BelongsToMany
     {
-        return $this->belongsToMany(Reader::class, 'lendings')->withPivot('lending_date', 'due_date');
+        return $this->belongsToMany(Reader::class, 'lendings')
+            ->whereNull('lendings.deleted_at')
+            ->withPivot('lending_date', 'due_date');
     }
 }

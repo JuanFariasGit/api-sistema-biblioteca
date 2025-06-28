@@ -16,6 +16,8 @@ class Reader extends Model
 
     public function books(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class, 'lendings')->withPivot('lending_date', 'due_date');
+        return $this->belongsToMany(Book::class, 'lendings')
+            ->whereNull('lendings.deleted_at')
+            ->withPivot('lending_date', 'due_date');
     }
 }
