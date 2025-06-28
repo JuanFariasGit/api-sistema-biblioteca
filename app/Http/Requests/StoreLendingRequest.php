@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\isOnLoan;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreLendingRequest extends FormRequest
@@ -22,7 +23,10 @@ class StoreLendingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'lending_date' => 'required|date',
+            'due_date' => 'required|date',
+            'reader_id' => 'required|uuid|exists:readers,id',
+            'book_id' => ['required', 'uuid', 'exists:books,id', new isOnLoan($this->lending_date, $this->due_date)]
         ];
     }
 }
