@@ -25,8 +25,8 @@ class isOnLoan implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $query =  Lending::where('book_id', $value)
-                    ->where('lending_date', '<=', date('Y-m-d', strtotime($this->lending_date)))
-                    ->where('due_date', '>=', date('Y-m-d', strtotime($this->due_date)));
+                    ->where('lending_date', '<=', $this->lending_date)
+                    ->where('due_date', '>=', $this->due_date);
 
         if ($this->id) {
             $query = $query->where('id', '<>', $this->id);
