@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lendings', function (Blueprint $table) {
-            $table->id();
+            $table->uuid()->primary();
             $table->foreignUuid('reader_id')
                   ->constrained()
                   ->cascadeOnUpdate()
@@ -21,8 +21,8 @@ return new class extends Migration
                   ->constrained()
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-            $table->date('lending_date');
-            $table->date('due_date');
+            $table->date('lending_date')->index();
+            $table->date('due_date')->index();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -4,6 +4,7 @@ use App\Http\Controllers\{
     AuthController,
     BookController,
     BookImagesController,
+    LendingController,
     PublisherController,
     ReaderController
 };
@@ -28,5 +29,9 @@ Route::apiResource('books', BookController::class)->middleware('auth:api');
 Route::apiResource('readers', ReaderController::class)->middleware('auth:api');
 
 Route::apiResource('book-images', BookImagesController::class)
+    ->only(['store', 'destroy'])
+    ->middleware('auth:api');
+
+Route::apiResource('lendings', LendingController::class)
     ->only(['store', 'destroy'])
     ->middleware('auth:api');
