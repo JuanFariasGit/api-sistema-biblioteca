@@ -16,7 +16,7 @@ class PublisherController extends Controller
 
     public function index()
     {
-        $data = $this->publisherRepository->all();
+        $data = $this->publisherRepository->paginate();
 
         return PublisherResource::collection($data);
     }

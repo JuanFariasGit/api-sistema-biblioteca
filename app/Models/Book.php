@@ -18,7 +18,7 @@ class Book extends Model
 
     public function publisher(): BelongsTo
     {
-        return $this->belongsTo(Publisher::class)->whereNull('deleted_at');
+        return $this->belongsTo(Publisher::class);
     }
 
     public function images(): HasMany
