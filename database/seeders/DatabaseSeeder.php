@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'juanfarias580@gmail.com',
         ]);
 
-        // Publisher::factory()
-        //     ->has(Book::factory(3))
-        //     ->create([
-        //         'name' => 'Cultrix'
-        //     ]);
+        Publisher::factory()
+            ->has(Book::factory(3))
+            ->create([
+                'name' => 'Cultrix'
+            ]);
 
-        // Reader::factory(10)->create();
+        Reader::factory(10)->create();
     }
 }

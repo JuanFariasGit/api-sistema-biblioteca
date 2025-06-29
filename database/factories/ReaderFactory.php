@@ -30,7 +30,8 @@ class ReaderFactory extends Factory
             'neighborhood' => $this->faker->sentence(),
             'city' => $this->faker->sentence(),
             'state' => 'PE',
-            'number' => 'SN'
+            'number' => 'SN',
+            'birthday' => $this->faker->date('Y_m_d')
         ];
     }
 }
