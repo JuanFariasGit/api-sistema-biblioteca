@@ -18,4 +18,11 @@ class Publisher extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+    public static function booted()
+    {
+        static::creating(function($model) {
+            $model->user_id = auth()->id();
+        });
+    }
 }

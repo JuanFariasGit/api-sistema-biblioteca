@@ -32,6 +32,7 @@ class BookImages extends Model
             );
 
             $model->image = $name;
+            $model->user_id = auth()->id();
         });
 
         static::deleting(function($model) {

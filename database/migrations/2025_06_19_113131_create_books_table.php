@@ -17,6 +17,10 @@ return new class extends Migration
                   ->constrained()
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
+            $table->foreignUlid('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('title');
             $table->string('subtitle');
             $table->string('author', 100);

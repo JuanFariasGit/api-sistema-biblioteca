@@ -6,10 +6,19 @@ use App\Http\Requests\StoreBookImagesRequest;
 use App\Http\Resources\BookImagesResource;
 use App\Models\BookImages;
 use App\Repositories\BookImagesRepository;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class BookImagesController extends Controller
+class BookImagesController extends Controller implements HasMiddleware
 {
-     public function __construct(private BookImagesRepository $bookImagesRepository)
+    public static function middleware()
+    {
+        return [
+            new Middleware('can:own,book_image', except: ['store'])
+        ];
+    }
+
+    public function __construct(private BookImagesRepository $bookImagesRepository)
     {
     }
 

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Lending;
 use App\Models\Publisher;
 use App\Models\Reader;
 use App\Models\User;
@@ -17,16 +18,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
+            'name' => 'Maria Liliane',
+            'email' => 'lilianebasilio1997@gmail.com'
+        ]);
+
+        $user = User::factory()->create([
             'name' => 'Juan Farias',
             'email' => 'juanfarias580@gmail.com',
         ]);
 
-        Publisher::factory()
-            ->has(Book::factory(3))
+        $publisher = Publisher::factory()
             ->create([
-                'name' => 'Cultrix'
+                'name' => 'Cultrix',
+                'user_id' => $user->id
             ]);
+        
+        Book::factory(10)->create([
+            'publisher_id' => $publisher->id,
+            'user_id' => $user->id
+        ]);
 
-        Reader::factory(10)->create();
+        Reader::factory(10)->create([
+            'user_id' => $user->id
+        ]);
     }
 }

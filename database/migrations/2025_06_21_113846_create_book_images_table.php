@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('book_images', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->foreignUlid('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->foreignUlid('book_id')
                   ->constrained()
                   ->cascadeOnUpdate()

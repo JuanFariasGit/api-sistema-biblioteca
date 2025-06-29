@@ -14,7 +14,7 @@ class BookRepository extends Repository
 
     public function paginate(int $perPage = 10): LengthAwarePaginator
     {
-        return $this->model()::with(
+        return $this->model()::where('user_id', auth('api')->id())->with(
             [
                     'publisher', 
                     'images', 

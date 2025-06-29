@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('readers', function (Blueprint $table) {
-            $table->ulid('id')->primary();            
+            $table->ulid('id')->primary();
+            $table->foreignUlid('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();            
             $table->char('cpf', 11);
             $table->string('full_name', 100);
             $table->date('birthday');

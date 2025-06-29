@@ -7,9 +7,18 @@ use App\Http\Requests\UpdateLendingRequest;
 use App\Http\Resources\LendingResource;
 use App\Models\Lending;
 use App\Repositories\LendingRepository;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class LendingController extends Controller
+class LendingController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('can:own,lending', except: ['index', 'store'])
+        ];
+    }
+
      public function __construct(private LendingRepository $lendingRepository)
     {
     }

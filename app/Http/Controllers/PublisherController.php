@@ -7,9 +7,18 @@ use App\Http\Requests\UpdatePublisherRequest;
 use App\Http\Resources\PublisherResource;
 use App\Models\Publisher;
 use App\Repositories\PublisherRepository;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PublisherController extends Controller
+class PublisherController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('can:own,publisher', except: ['index', 'store'])
+        ];
+    }
+
     public function __construct(private PublisherRepository $publisherRepository)
     {
     }

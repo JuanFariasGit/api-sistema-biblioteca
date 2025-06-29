@@ -20,4 +20,11 @@ class Reader extends Model
             ->whereNull('lendings.deleted_at')
             ->withPivot('lending_date', 'due_date');
     }
+
+    public static function booted()
+    {
+        static::creating(function($model) {
+            $model->user_id = auth()->id();
+        });
+    }
 }

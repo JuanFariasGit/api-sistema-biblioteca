@@ -7,9 +7,18 @@ use App\Http\Requests\UpdateReaderRequest;
 use App\Http\Resources\ReaderResource;
 use App\Models\Reader;
 use App\Repositories\ReaderRepository;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ReaderController extends Controller
+class ReaderController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('can:own,reader', except: ['index', 'store'])
+        ];
+    }
+
      public function __construct(private ReaderRepository $readerRepository)
     {
     }

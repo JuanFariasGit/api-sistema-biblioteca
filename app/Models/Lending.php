@@ -35,4 +35,11 @@ class Lending extends Model
     {
         return $this->belongsTo(Reader::class);
     }
+
+    public static function booted()
+    {
+        static::creating(function($model) {
+            $model->user_id = auth()->id();
+        });
+    }
 }

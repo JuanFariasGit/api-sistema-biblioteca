@@ -25,8 +25,8 @@ class UpdateLendingRequest extends FormRequest
         return [
             'lending_date' => 'required|date',
             'due_date' => 'required|date',
-            'reader_id' => 'required|uuid|exists:readers,id',
-            'book_id' => ['required', 'uuid', 'exists:books,id', new isOnLoan(
+            'reader_id' => 'required|ulid|exists:readers,id',
+            'book_id' => ['required', 'ulid', 'exists:books,id', new isOnLoan(
                 $this->lending_date, 
                 $this->due_date,
                 $this->lending->id

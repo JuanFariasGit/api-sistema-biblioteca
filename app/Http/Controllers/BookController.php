@@ -7,9 +7,18 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Repositories\BookRepository;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class BookController extends Controller
+class BookController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('can:own,book', except: ['index', 'store'])
+        ];
+    }
+
      public function __construct(private BookRepository $bookRepository)
     {
     }
