@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('lendings', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUuid('reader_id')
+            $table->foreignUlid('reader_id')
                   ->constrained()
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-            $table->foreignUuid('book_id')
+            $table->foreignUlid('book_id')
                   ->constrained()
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
