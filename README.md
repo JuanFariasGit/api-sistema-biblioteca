@@ -1,4 +1,4 @@
-# 📚 API Sistema Biblioteca
+# 📚 API SISTEMA BIBIBLIOTECA
 
 Uma API RESTful moderna para gerenciamento de bibliotecas, desenvolvida com Laravel 12 e autenticação JWT.
 
