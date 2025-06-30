@@ -17,29 +17,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Maria Liliane',
-            'email' => 'lilianebasilio1997@gmail.com'
-        ]);
-
         $user = User::factory()->create([
             'name' => 'Juan Farias',
             'email' => 'juanfarias580@gmail.com',
         ]);
 
+        auth()->login($user);
+
+        User::factory()->create([
+            'name' => 'Maria Liliane',
+            'email' => 'lilianebasilio1997@gmail.com'
+        ]);
+
         $publisher = Publisher::factory()
             ->create([
-                'name' => 'Cultrix',
-                'user_id' => $user->id
+                'name' => 'Cultrix'
             ]);
         
         Book::factory(10)->create([
-            'publisher_id' => $publisher->id,
-            'user_id' => $user->id
+            'publisher_id' => $publisher->id
         ]);
 
-        Reader::factory(10)->create([
-            'user_id' => $user->id
-        ]);
+        Reader::factory(10)->create();
     }
 }
