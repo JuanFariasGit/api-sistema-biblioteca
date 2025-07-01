@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (AccessDeniedHttpException $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => '403 Acesso Não Autorizado!'
+                    'message' => '403 | Acesso Não Autorizado!'
                 ], 403);
             }
         });
@@ -30,7 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => '404 Não Encontrado!'
+                    'message' => '404 | Não Encontrado!'
                 ], 404);
             }
         });
@@ -38,7 +38,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (MethodNotAllowedHttpException $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => '405 Método Não Encontrado!'
+                    'message' => '405 | Método Não Encontrado!'
                 ], 405);
             }
         });
@@ -46,7 +46,7 @@ return Application::configure(basePath: dirname(__DIR__))
          $exceptions->render(function (ParseError $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => '500 Erro Interno do Servidor!'
+                    'message' => '500 | Erro Interno do Servidor!'
                 ], 500);
             }
         });
