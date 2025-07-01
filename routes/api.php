@@ -22,15 +22,17 @@ Route::prefix('auth')->group(function () {
     
 });
 
-Route::apiResource('publishers', PublisherController::class)->middleware('auth:api');
+Route::middleware('auth:api')->group(function() {
 
-Route::apiResource('books', BookController::class)->middleware('auth:api');
+    Route::apiResource('publishers', PublisherController::class);
+    
+    Route::apiResource('books', BookController::class);
+    
+    Route::apiResource('readers', ReaderController::class);
+    
+    Route::apiResource('book-images', BookImagesController::class)
+        ->only(['store', 'destroy']);
+    
+    Route::apiResource('lendings', LendingController::class);
 
-Route::apiResource('readers', ReaderController::class)->middleware('auth:api');
-
-Route::apiResource('book-images', BookImagesController::class)
-    ->only(['store', 'destroy'])
-    ->middleware('auth:api');
-
-Route::apiResource('lendings', LendingController::class)
-    ->middleware('auth:api');
+});
