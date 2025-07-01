@@ -35,7 +35,7 @@ class BookImages extends Model
             $model->user_id = auth()->id();
         });
 
-        static::deleting(function($model) {
+        static::forceDeleting(function($model) {
             Storage::disk('public')->delete('books_images/' . $model->image);
         });
     }
