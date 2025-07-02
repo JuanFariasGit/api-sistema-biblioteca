@@ -21,32 +21,40 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (AccessDeniedHttpException $e, Request $request) {
             if ($request->is('api/*')) {
+                $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
+
                 return response()->json([
-                    'message' => '403 | Acesso Não Autorizado!'
+                    'message' => "403 | Acesso Não Autorizado! {$messageError}"
                 ], 403);
             }
         });
         
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
             if ($request->is('api/*')) {
+                $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
+
                 return response()->json([
-                    'message' => '404 | Não Encontrado!'
+                    'message' => "404 | Não Encontrado! {$messageError}"
                 ], 404);
             }
         });
 
         $exceptions->render(function (MethodNotAllowedHttpException $e, Request $request) {
             if ($request->is('api/*')) {
+                $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
+
                 return response()->json([
-                    'message' => '405 | Método Não Encontrado!'
+                    'message' => "405 | Método Não Encontrado! {$messageError}"
                 ], 405);
             }
         });
 
-         $exceptions->render(function (ParseError $e, Request $request) {
+         $exceptions->render(function (BadMethodCallException|ParseError $e, Request $request) {
             if ($request->is('api/*')) {
+                $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
+
                 return response()->json([
-                    'message' => '500 | Erro Interno do Servidor!'
+                    'message' => "500 | Erro Interno do Servidor! {$messageError}"
                 ], 500);
             }
         });
