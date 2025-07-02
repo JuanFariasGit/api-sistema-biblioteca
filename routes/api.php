@@ -6,7 +6,8 @@ use App\Http\Controllers\{
     BookImagesController,
     LendingController,
     PublisherController,
-    ReaderController
+    ReaderController,
+    UserController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,9 @@ Route::prefix('auth')->group(function () {
     });
     
 });
+
+Route::apiResource('users', UserController::class)
+    ->only(['store']);
 
 Route::middleware('auth:api')->group(function() {
 

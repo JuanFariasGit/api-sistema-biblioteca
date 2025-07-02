@@ -49,7 +49,7 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
 
-         $exceptions->render(function (BadMethodCallException|ParseError $e, Request $request) {
+         $exceptions->render(function (BadMethodCallException|ParseError|ErrorException $e, Request $request) {
             if ($request->is('api/*')) {
                 $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
 
