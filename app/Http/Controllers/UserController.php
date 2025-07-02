@@ -24,9 +24,9 @@ class UserController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
             'user' => [
-                'id' => $data['id'],
-                'name' => $data['name'],
-                'email' => $data['email']
+                'id' => $data->id,
+                'name' => $data->name,
+                'email' => $data->email
             ]
         ]);
     }
