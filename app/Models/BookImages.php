@@ -32,7 +32,7 @@ class BookImages extends Model
             );
 
             $model->image = $name;
-            $model->user_id = auth()->id();
+            $model->user_id = auth('api')->id();
         });
 
         static::forceDeleting(function($model) {
