@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\isOnLoan;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateLendingRequest extends FormRequest
 {
@@ -23,8 +24,8 @@ class UpdateLendingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'lending_date' => 'required|date',
-            'due_date' => 'required|date',
+            'lending_date' =>  ['required', Rule::date()->format('Y-m-d')],
+            'due_date' =>  ['required', Rule::date()->format('Y-m-d')],
             'reader_id' => 'required|ulid|exists:readers,id',
             'book_id' => ['required', 'ulid', 'exists:books,id', new isOnLoan(
                 $this->lending_date, 
