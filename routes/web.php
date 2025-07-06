@@ -7,3 +7,7 @@ Route::get('/', function () {
         'status' => 'api online'
     ];
 });
+
+Route::get('/login', function () {
+    return null;
+})->name('login');
