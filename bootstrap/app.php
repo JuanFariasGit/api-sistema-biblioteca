@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,16 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (AuthenticationException $e, Request $request) {
+            if ($request->is('api/*')) {
+                $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
+
+                return response()->json([
+                    'message' => "401 | Acesso Não Autenticado! {$messageError}"
+                ], 401);
+            }
+        });
+        
         $exceptions->render(function (AccessDeniedHttpException $e, Request $request) {
             if ($request->is('api/*')) {
                 $messageError = config('app.env') == 'local' ? $e->getMessage() : '';
