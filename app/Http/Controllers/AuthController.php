@@ -13,7 +13,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Email e/ou senha estão incorretos!'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return $this->respondWithCookie($token);
     }
 
     public function me()
@@ -30,22 +30,24 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        return $this->respondWithCookie(auth('api')->refresh());
     }
 
-    protected function respondWithToken($token)
+    protected function respondWithCookie($token)
     {
-        $user = auth('api')->user();
+        $cookie = cookie(
+            'jwt', 
+            $token, 
+            auth('api')
+                ->factory()
+                ->getTTL(),
+            '/',
+            config('app.url'),
+            false,
+            true
+        );
 
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email
-            ]
-        ]);
+        return response()->json(['user' => auth('api')->user()])
+                ->withCookie($cookie);
     }
 }

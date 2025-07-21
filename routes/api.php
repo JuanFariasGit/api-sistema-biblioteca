@@ -9,13 +9,14 @@ use App\Http\Controllers\{
     ReaderController,
     UserController
 };
+use App\Http\Middleware\JWTMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
 
     Route::post('login', [AuthController::class, 'login']);
 
-    Route::middleware('auth:api')->group(function() {
+    Route::middleware(['auth:api', JWTMiddleware::class])->group(function() {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
         Route::post('me', [AuthController::class, 'me']);
@@ -26,7 +27,7 @@ Route::prefix('auth')->group(function () {
 Route::apiResource('users', UserController::class)
     ->only(['store']);
 
-Route::middleware('auth:api')->group(function() {
+Route::middleware(['auth:api', JWTMiddleware::class])->group(function() {
 
     Route::apiResource('publishers', PublisherController::class);
     
