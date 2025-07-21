@@ -47,7 +47,7 @@ class AuthController extends Controller
             true
         );
 
-        return response()->json(['user' => auth('api')->user()])
+        return response()->json([])
                 ->withCookie($cookie);
     }
 }
