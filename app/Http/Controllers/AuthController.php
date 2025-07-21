@@ -42,8 +42,8 @@ class AuthController extends Controller
                 ->factory()
                 ->getTTL(),
             '/',
-            config('app.url'),
-            false,
+            null,
+            config('app.env') == 'production',
             true
         );
 
