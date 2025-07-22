@@ -44,7 +44,8 @@ class AuthController extends Controller
             '/',
             null,
             config('app.env') == 'production',
-            true
+            true,
+            'strict'
         );
 
         return response()->json([])
