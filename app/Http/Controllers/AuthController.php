@@ -45,6 +45,7 @@ class AuthController extends Controller
             null,
             config('app.env') == 'production',
             true,
+            null,
             'strict'
         );
 
