@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes; 
+    use HasFactory, HasUlids, SoftDeletes;
 
-    protected $guarded = []; 
+    protected $guarded = [];
 
     public function publisher(): BelongsTo
     {
@@ -26,7 +26,7 @@ class Book extends Model
         return $this->hasMany(BookImages::class);
     }
 
-    public function readers(): BelongsToMany
+    public function readings(): BelongsToMany
     {
         return $this->belongsToMany(Reader::class, 'lendings')
             ->whereNull('lendings.deleted_at')
