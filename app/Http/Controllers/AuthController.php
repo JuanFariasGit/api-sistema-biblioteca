@@ -35,9 +35,11 @@ class AuthController extends Controller
 
     protected function respondWithCookie($token)
     {
+        $user = auth('api')->user();
+
         $cookie = cookie(
-            'jwt', 
-            $token, 
+            'jwt',
+            $token,
             auth('api')
                 ->factory()
                 ->getTTL(),
@@ -49,7 +51,12 @@ class AuthController extends Controller
             'strict'
         );
 
-        return response()->json([])
-                ->withCookie($cookie);
+        return response()->json([
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email
+            ]
+        ])->withCookie($cookie);
     }
 }
