@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\UserResource;
 use App\Repositories\UserRepository;
 
 class UserController extends Controller
@@ -15,14 +16,8 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $user = $this->userRepository->create($validated);
+        $data = $this->userRepository->create($validated);
 
-        return response()->json([
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email
-            ]
-        ]);
+        return new UserResource($data);
     }
 }
