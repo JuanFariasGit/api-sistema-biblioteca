@@ -1,6 +1,6 @@
 # 📚 API SISTEMA BIBIBLIOTECA
 
-Uma API RESTful para gerenciamento de bibliotecas, desenvolvida com Laravel 12.
+Uma API RESTful para gerenciamento de bibliotecas, desenvolvida com Laravel 12 e está disponível em https://api.biblioteca.juanfariasdev.com.br.
 
 ## Documentação
 - [https://documenter.getpostman.com/view/38812718/2sB34cp2rG](https://documenter.getpostman.com/view/38812718/2sB34cp2rG)
