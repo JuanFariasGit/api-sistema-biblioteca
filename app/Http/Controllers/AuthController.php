@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 class AuthController extends Controller
 {
     public function login()
@@ -13,7 +16,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Email e/ou senha estão incorretos!'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return $this->respondWithToken($token, auth('api')->user());
     }
 
     public function me()
@@ -30,13 +33,14 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        $token = auth('api')->refresh();
+        $user = auth('api')->setToken($token)->user();
+
+        return $this->respondWithToken($token, $user);
     }
 
-    protected function respondWithToken($token)
+    protected function respondWithToken($token, $user)
     {
-        $user = auth('api')->user();
-
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
