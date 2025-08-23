@@ -2,7 +2,7 @@
 
 use App\Models\User;
 
-it('only users with valid tokens can create editors', function () {
+it('only users with valid tokens can create publishers', function () {
     $data = [
         'name' => 'Publisher 1',
     ];
