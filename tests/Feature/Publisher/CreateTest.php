@@ -2,12 +2,12 @@
 
 use App\Models\User;
 
-it('only logged in users can create publishers', function () {
+it('only users with valid tokens can create editors', function () {
     $data = [
         'name' => 'Publisher 1',
     ];
 
-    $this->postJson('/api/publishers', $data)
+    $this->withToken('token-invalid')->postJson('/api/publishers', $data)
         ->assertStatus(401);
 });
 
