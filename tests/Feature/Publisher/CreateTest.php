@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 
+
 it('only users with valid tokens can create publishers', function () {
     $this->withToken('token-invalid')->postJson('/api/publishers', [
         'name' => 'Publisher 1'
@@ -22,11 +23,13 @@ it('should be able to create a publisher', function () {
     ])
     ->assertStatus(201)
     ->assertJson(function (AssertableJson $json) {
-        $json->whereType('data.id', 'string');
-        $json->whereType('data.user_id', 'string');
-        $json->whereType('data.name', 'string');
-        $json->whereType('data.created_at', 'string');
-        $json->whereType('data.updated_at', 'string');
+        $json->has('data', function (AssertableJson $json) {
+            $json->whereType('id', 'string');
+            $json->whereType('user_id', 'string');
+            $json->whereType('name', 'string');
+            $json->whereType('created_at', 'string');
+            $json->whereType('updated_at', 'string');
+        });
     });
 });
 
