@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Models\{
     Publisher,
     User
@@ -27,5 +28,24 @@ it('should be a pagination', function () {
 
     $this->withToken($accessToken)->getJson('/api/publishers')
         ->assertJsonCount(10, 'data')
+        ->assertJsonStructure([
+            'data' => [
+                0 => [
+                    'name',
+                    'user_id',
+                    'created_at',
+                    'updated_at',
+                    'deleted_at',
+                ]
+            ],
+            'meta' => [
+                'total',
+                'last_page',
+                'per_page',
+                'current_page',
+                'from',
+                'to'
+            ]
+        ])
         ->assertStatus(200);
 });

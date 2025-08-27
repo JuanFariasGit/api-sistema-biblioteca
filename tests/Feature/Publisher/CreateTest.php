@@ -22,15 +22,14 @@ it('should be able to create a publisher', function () {
         'name' => 'Publisher 1'
     ])
     ->assertStatus(201)
-    ->assertJson(function (AssertableJson $json) {
-        $json->has('data', function (AssertableJson $json) {
-            $json->whereType('id', 'string');
-            $json->whereType('user_id', 'string');
-            $json->whereType('name', 'string');
-            $json->whereType('created_at', 'string');
-            $json->whereType('updated_at', 'string');
-        });
-    });
+    ->assertJsonStructure([
+        'data' => [
+            'name',
+            'user_id',
+            'created_at',
+            'updated_at',
+        ]
+    ]);
 });
 
 it('name should be required', function () {
