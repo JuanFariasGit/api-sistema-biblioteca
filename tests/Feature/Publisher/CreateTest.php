@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Testing\Fluent\AssertableJson;
 
 
 it('only users with valid tokens can create publishers', function () {
