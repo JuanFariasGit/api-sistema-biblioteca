@@ -7,9 +7,7 @@ use App\Models\{
 
 
 it('only users with valid tokens can list publishers', function () {
-    $this->withToken('token-invalid')->postJson('/api/publishers', [
-        'name' => 'Publisher 1'
-    ])->assertStatus(401);
+    $this->withToken('token-invalid')->getJson('/api/publishers')->assertStatus(401);
 });
 
 it('should be a pagination', function () {
