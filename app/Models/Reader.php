@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\Scopes;
+use App\Traits\ScopesGlobally;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reader extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes, Scopes;
+    use HasFactory, HasUlids, SoftDeletes, ScopesGlobally;
 
     protected $guarded = [];
 

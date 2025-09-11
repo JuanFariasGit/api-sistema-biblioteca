@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\Scopes;
+use App\Traits\ScopesGlobally;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lending extends Model
 {
-    use HasUlids, SoftDeletes, Scopes;
+    use HasUlids, SoftDeletes, ScopesGlobally;
 
     protected $guarded = [];
 
