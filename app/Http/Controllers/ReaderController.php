@@ -6,7 +6,7 @@ use App\Http\Requests\StoreReaderRequest;
 use App\Http\Requests\UpdateReaderRequest;
 use App\Http\Resources\ReaderResource;
 use App\Models\Reader;
-use App\Repositories\ReaderRepository;
+use App\Services\ReaderService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -19,13 +19,13 @@ class ReaderController extends Controller implements HasMiddleware
         ];
     }
 
-     public function __construct(private ReaderRepository $readerRepository)
+     public function __construct(private ReaderService $readerService)
     {
     }
 
     public function index()
     {
-        $data = $this->readerRepository->paginate();
+        $data = $this->readerService->paginate();
 
         return ReaderResource::collection($data);
     }
@@ -39,7 +39,7 @@ class ReaderController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
 
-        $data = $this->readerRepository->create($validated);
+        $data = $this->readerService->create($validated);
 
         return new ReaderResource($data);
     }
@@ -48,11 +48,11 @@ class ReaderController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
 
-        return $this->readerRepository->update($reader, $validated);
+        return $this->readerService->update($reader, $validated);
     }
 
     public function destroy(Reader $reader)
     {
-        return $this->readerRepository->delete($reader);
+        return $this->readerService->delete($reader);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookImagesRequest;
 use App\Http\Resources\BookImagesResource;
 use App\Models\BookImages;
-use App\Repositories\BookImagesRepository;
+use App\Services\BookImagesService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -18,7 +18,7 @@ class BookImagesController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __construct(private BookImagesRepository $bookImagesRepository)
+    public function __construct(private BookImagesService $bookImagesService)
     {
     }
 
@@ -26,13 +26,13 @@ class BookImagesController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
        
-        $data = $this->bookImagesRepository->create($validated);
+        $data = $this->bookImagesService->create($validated);
     
         return new BookImagesResource($data);
     }
 
     public function destroy(BookImages $book_image)
     {
-        return $this->bookImagesRepository->delete($book_image);
+        return $this->bookImagesService->delete($book_image);
     }
 }

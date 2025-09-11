@@ -6,7 +6,7 @@ use App\Http\Requests\StorePublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
 use App\Http\Resources\PublisherResource;
 use App\Models\Publisher;
-use App\Repositories\PublisherRepository;
+use App\Services\PublisherService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -19,13 +19,13 @@ class PublisherController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __construct(private PublisherRepository $publisherRepository)
+    public function __construct(private PublisherService $publisherService)
     {
     }
 
     public function index()
     {
-        $data = $this->publisherRepository->paginate();
+        $data = $this->publisherService->paginate();
 
         return PublisherResource::collection($data);
     }
@@ -39,7 +39,7 @@ class PublisherController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
 
-        $data = $this->publisherRepository->create($validated);
+        $data = $this->publisherService->create($validated);
 
         return new PublisherResource($data);
     }
@@ -48,11 +48,11 @@ class PublisherController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
 
-        return $this->publisherRepository->update($publisher, $validated);
+        return $this->publisherService->update($publisher, $validated);
     }
 
     public function destroy(Publisher $publisher)
     {
-        return $this->publisherRepository->delete($publisher);
+        return $this->publisherService->delete($publisher);
     }
 }

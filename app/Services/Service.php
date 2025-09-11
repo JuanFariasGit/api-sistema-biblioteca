@@ -1,18 +1,18 @@
 <?php 
 
-namespace App\Repositories;
+namespace App\Services;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator;
 
-abstract class Repository
+abstract class Service
 {
-    abstract protected function model(): Model;
+    public function __construct(private Model $model) 
+    {
+    }
 
     public function create(array $data)
     {
-        return $this->model()::create($data);
+        return $this->model::create($data);
     }
 
     public function update(Model $model, $data)

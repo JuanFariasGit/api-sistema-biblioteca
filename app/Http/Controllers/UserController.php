@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
-use App\Repositories\UserRepository;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-    public function __construct(private UserRepository $userRepository)
+    public function __construct(private UserService $userService)
     {
     }
 
@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
         
-        $data = $this->userRepository->create($validated);
+        $data = $this->userService->create($validated);
 
         $token = auth('api')->attempt($validated);
 

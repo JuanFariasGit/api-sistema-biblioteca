@@ -6,7 +6,7 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
-use App\Repositories\BookRepository;
+use App\Services\BookService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -19,13 +19,13 @@ class BookController extends Controller implements HasMiddleware
         ];
     }
 
-     public function __construct(private BookRepository $bookRepository)
+    public function __construct(private BookService $bookService)
     {
     }
 
     public function index()
     {
-        $data = $this->bookRepository->paginate();
+        $data = $this->bookService->paginate();
 
         return BookResource::collection($data);
     }
@@ -39,7 +39,7 @@ class BookController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
 
-        $data = $this->bookRepository->create($validated);
+        $data = $this->bookService->create($validated);
 
         return new BookResource($data);
     }
@@ -48,11 +48,11 @@ class BookController extends Controller implements HasMiddleware
     {
         $validated = $request->validated();
 
-        return $this->bookRepository->update($book, $validated);
+        return $this->bookService->update($book, $validated);
     }
 
     public function destroy(Book $book)
     {
-        return $this->bookRepository->delete($book);
+        return $this->bookService->delete($book);
     }
 }
