@@ -2,13 +2,14 @@
 
 namespace App\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
 trait Scopes
 {
-    public function scopeAuthApiUser()
+    public function scopeAuthApiUser(Builder $query)
     {
-        return $this->where('user_id', Auth::guard('api')
+        $query->where('user_id', Auth::guard('api')
             ->user()
             ->id
         );        
