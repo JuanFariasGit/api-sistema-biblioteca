@@ -22,7 +22,7 @@ class BookImages extends Model
 
     public static function booted()
     {
-        static::creating(function($model) {;
+        static::creating(function($model) {
             $name = uniqid() . '_' . str_replace(' ', '_', strtolower($model->image->getClientOriginalName()));
             
             $model->image->storeAs(
