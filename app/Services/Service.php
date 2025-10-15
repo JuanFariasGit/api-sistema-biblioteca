@@ -18,7 +18,7 @@ abstract class Service
     public function update(Model $model, $data)
     {
         if ($model->update($data)) {
-            return $this->find($model->id);
+            return $this->model::find($model->id);
         }
     }
 
