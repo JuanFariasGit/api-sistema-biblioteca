@@ -11,8 +11,8 @@ Uma API RESTful para gerenciamento de bibliotecas, desenvolvida com Laravel 12.
 
 ## 📋 Pré-requisitos
 
-- PHP 8.2 ou superior
-- Composer
+- Docker
+- Git
 
 ## ⚙️ Instalação
 
@@ -24,7 +24,12 @@ cd api-sistema-biblioteca
 
 ### 2. Instale as dependências
 ```bash
-composer install
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php84-composer:latest \
+    composer install --ignore-platform-reqs
 ```
 
 ### 3. Configure o ambiente
@@ -34,24 +39,18 @@ cp .env.example .env
 
 ### 4. Gere as chaves de segurança
 ```bash
-php artisan key:generate
-php artisan jwt:secret
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan jwt:secret
 ```
 
 ### 5. Execute as migrações
 ```bash
-php artisan migrate
+./vendor/bin/sail artisan migrate
 ```
 
 ### 6. (Opcional) Popule o banco com dados de teste
 ```bash
-php artisan db:seed
+./vendor/bin/sail artisan db:seed
 ```
 
-### 7. Inicie o servidor
-```bash
-php artisan serve
-```
-
-A API estará disponível em `http://localhost:8000`
-
+A API estará disponível em `http://localhost`
