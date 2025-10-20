@@ -53,4 +53,9 @@ cp .env.example .env
 ./vendor/bin/sail artisan db:seed
 ```
 
+### 7. Testar a API
+```bash
+./vendor/bin/sail artisan test
+```
+
 A API estará disponível em `http://localhost`
