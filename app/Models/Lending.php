@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lending extends Model
 {
-    use HasUlids, SoftDeletes, ScopesGlobally;
+    use HasUlids, SoftDeletes;
 
     protected $guarded = [];
 

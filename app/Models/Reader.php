@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reader extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes, ScopesGlobally;
+    use HasFactory, HasUlids, SoftDeletes;
 
     protected $guarded = [];
 

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Publisher extends Model
 {
-    use HasFactory, HasUlids, SoftDeletes, ScopesGlobally;
+    use HasFactory, HasUlids, SoftDeletes;
 
     protected $guarded = [];
 

@@ -1,42 +1,21 @@
 <?php
 
-use App\Http\Controllers\{
-    AuthController,
-    BookController,
-    BookImagesController,
-    LendingController,
-    PublisherController,
-    ReaderController,
-    UserController
-};
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('auth')->group(function () {
+Route::prefix('auth')->group(base_path('routes/groups/auth.php'));
 
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-
-    Route::middleware('auth:api')->group(function() {
-        Route::post('logout', [AuthController::class, 'logout']);
-        Route::post('me', [AuthController::class, 'me']);
-    });
-
-});
-
-Route::apiResource('users', UserController::class)
-    ->only(['store']);
+Route::prefix('users')->group(base_path('routes/groups/users.php'));
 
 Route::middleware('auth:api')->group(function() {
 
-    Route::apiResource('publishers', PublisherController::class);
+    Route::prefix('publishers')->group(base_path('routes/groups/publishers.php'));
 
-    Route::apiResource('books', BookController::class);
+    Route::prefix('books')->group(base_path('routes/groups/books.php'));
 
-    Route::apiResource('readers', ReaderController::class);
+    Route::prefix('book-images')->group(base_path('routes/groups/book-images.php'));
 
-    Route::apiResource('book-images', BookImagesController::class)
-        ->only(['store', 'destroy']);
+    Route::prefix('lendings')->group(base_path('routes/groups/lendings.php'));
 
-    Route::apiResource('lendings', LendingController::class);
-
+    Route::prefix('readers')->group(base_path('routes/groups/readers.php'));
+    
 });
