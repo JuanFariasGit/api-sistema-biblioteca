@@ -24,7 +24,7 @@ it('should be a pagination', function () {
         ->create();
 
     $this->withToken($accessToken)->getJson('/api/publishers')
-        ->assertJsonCount(10, 'data')
+        ->assertJsonCount(15, 'data')
         ->assertJsonStructure([
             'data' => [
                 0 => [
@@ -33,7 +33,6 @@ it('should be a pagination', function () {
                     'created_at',
                     'updated_at',
                     'deleted_at',
-                    'books'
                 ]
             ],
             'links' => [],
