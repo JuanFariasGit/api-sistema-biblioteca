@@ -2,4 +2,4 @@
 
 use App\Http\Controllers\User\StoreUserController;
 
-Route::post('users', StoreUserController::class);
+Route::post('', StoreUserController::class);
