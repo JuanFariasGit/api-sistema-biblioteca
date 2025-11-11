@@ -19,7 +19,7 @@ class RefreshTokenAuthController extends Controller
         return $this->respondWithToken($token, $user);
     }
 
-    protected function respondWithToken($token, $user): JsonResponse
+    private function respondWithToken($token, $user): JsonResponse
     {
         return response()->json([
             'access_token' => $token,

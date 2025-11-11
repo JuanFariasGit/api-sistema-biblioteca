@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateLendingRequest;
 use App\Http\Resources\LendingResource;
 use App\Models\Lending;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
 
 class UpdateLendingController extends Controller
@@ -21,7 +20,7 @@ class UpdateLendingController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(UpdateLendingRequest $request, Lending $lending)
+    public function __invoke(UpdateLendingRequest $request, Lending $lending): LendingResource
     {
         $validated = $request->validated();
 
