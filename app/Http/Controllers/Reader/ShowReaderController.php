@@ -9,13 +9,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class ShowReaderController extends Controller
 {
-    public static function middleware()
-    {
-        return [
-            new Middleware('can:own,reader')
-        ];
-    }
-
     /**
      * Handle the incoming request.
      */

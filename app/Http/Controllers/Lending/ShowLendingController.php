@@ -10,13 +10,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class ShowLendingController extends Controller
 {
-    public static function middleware()
-    {
-        return [
-            new Middleware('can:own,lending')
-        ];
-    }
-
     /**
      * Handle the incoming request.
      */

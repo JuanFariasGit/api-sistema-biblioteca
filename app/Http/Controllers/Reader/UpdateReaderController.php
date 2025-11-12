@@ -10,13 +10,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class UpdateReaderController extends Controller
 {
-    public static function middleware()
-    {
-        return [
-            new Middleware('can:own,reader')
-        ];
-    }
-
     /**
      * Handle the incoming request.
      */

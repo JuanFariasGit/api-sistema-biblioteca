@@ -8,13 +8,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class DestroyBookImagesController extends Controller
 {
-     public static function middleware()
-    {
-        return [
-            new Middleware('can:own,bookImages')
-        ];
-    }
-
     /**
      * Handle the incoming request.
      */

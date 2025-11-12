@@ -8,7 +8,7 @@ use App\Http\Controllers\Reader\UpdateReaderController;
 
 
 Route::get('', ListReaderController::class);
-Route::get('{reader}', ShowReaderController::class);
+Route::get('{reader}', ShowReaderController::class)->middleware('can:own,reader');
 Route::post('', StoreReaderController::class);
-Route::put('{reader}', UpdateReaderController::class);
-Route::delete('{reader}', DestroyReaderController::class);
+Route::put('{reader}', UpdateReaderController::class)->middleware('can:own,reader');
+Route::delete('{reader}', DestroyReaderController::class)->middleware('can:own,reader');

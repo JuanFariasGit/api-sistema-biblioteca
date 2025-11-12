@@ -10,13 +10,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class UpdatePublisherController extends Controller
 {
-    public static function middleware()
-    {
-        return [
-            new Middleware('can:own,publisher')
-        ];
-    }
-
     /**
      * Handle the incoming request.
      */

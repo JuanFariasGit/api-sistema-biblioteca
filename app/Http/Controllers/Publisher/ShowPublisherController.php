@@ -9,13 +9,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class ShowPublisherController extends Controller
 {
-    public static function middleware()
-    {
-        return [
-            new Middleware('can:own,publisher')
-        ];
-    }
-
     /**
      * Handle the incoming request.
      */
