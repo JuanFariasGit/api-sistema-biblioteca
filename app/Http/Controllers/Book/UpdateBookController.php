@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
-use Illuminate\Routing\Controllers\Middleware;
 
 class UpdateBookController extends Controller
 {

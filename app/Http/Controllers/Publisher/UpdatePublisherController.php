@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePublisherRequest;
 use App\Http\Resources\PublisherResource;
 use App\Models\Publisher;
-use Illuminate\Routing\Controllers\Middleware;
 
 class UpdatePublisherController extends Controller
 {

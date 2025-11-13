@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Publisher;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PublisherResource;
 use App\Models\Publisher;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ListPublisherController extends Controller

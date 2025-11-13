@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateReaderRequest;
 use App\Http\Resources\ReaderResource;
 use App\Models\Reader;
-use Illuminate\Routing\Controllers\Middleware;
 
 class UpdateReaderController extends Controller
 {

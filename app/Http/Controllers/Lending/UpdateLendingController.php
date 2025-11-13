@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateLendingRequest;
 use App\Http\Resources\LendingResource;
 use App\Models\Lending;
-use Illuminate\Routing\Controllers\Middleware;
 
 class UpdateLendingController extends Controller
 {

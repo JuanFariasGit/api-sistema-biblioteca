@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePublisherRequest;
 use App\Http\Resources\PublisherResource;
 use App\Models\Publisher;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class StorePublisherController extends Controller
 {
