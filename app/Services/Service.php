@@ -17,9 +17,9 @@ abstract class Service
 
     public function update(Model $model, $data)
     {
-        if ($model->update($data)) {
-            return $this->model::find($model->id);
-        }
+        $model->update($data);
+
+        return $model->fresh()
     }
 
     public function delete(Model $model)
