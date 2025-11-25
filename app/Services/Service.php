@@ -19,7 +19,7 @@ abstract class Service
     {
         $model->update($data);
 
-        return $model->fresh()
+        return $model->fresh();
     }
 
     public function delete(Model $model)
