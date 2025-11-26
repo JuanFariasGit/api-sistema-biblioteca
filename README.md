@@ -32,28 +32,33 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-### 3. Configure o ambiente
+### 3. Subir os containers
+```bash
+./vendor/bin/sail up -d
+```
+
+### 4. Configure o ambiente
 ```bash
 cp .env.example .env
 ```
 
-### 4. Gere as chaves de segurança
+### 5. Gere as chaves de segurança
 ```bash
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan jwt:secret
 ```
 
-### 5. Execute as migrações
+### 6. Execute as migrações
 ```bash
 ./vendor/bin/sail artisan migrate
 ```
 
-### 6. (Opcional) Popule o banco com dados de teste
+### 7. (Opcional) Popule o banco com dados de teste
 ```bash
 ./vendor/bin/sail artisan db:seed
 ```
 
-### 7. Testar a API
+### 8. Testar a API
 ```bash
 ./vendor/bin/sail artisan test
 ```
