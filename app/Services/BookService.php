@@ -15,7 +15,7 @@ class BookService extends Service
     public function paginate(int $perPage = 10): LengthAwarePaginator
     {
         return $this->book::authApiUser()
-            ->with(['publisher', 'images', 'readers'])
+            ->with(['publisher', 'images'])
             ->paginate($perPage);
     }
 } 

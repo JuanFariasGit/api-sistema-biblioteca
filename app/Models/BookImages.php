@@ -23,15 +23,12 @@ class BookImages extends Model
     public static function booted()
     {
         static::creating(function($model) {
-            $name = uniqid() . '_' . str_replace(' ', '_', strtolower($model->image->getClientOriginalName()));
-            
-            $model->image->storeAs(
-                'books_images', 
-                $name, 
-                'public'
-            );
+            $name = $model->image->hashName();
+
+            $model->image->storeAs('books_images', $name);
 
             $model->image = $name;
+            
             $model->user_id = auth('api')->id();
         });
 
