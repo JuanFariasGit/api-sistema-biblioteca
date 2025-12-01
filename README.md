@@ -7,7 +7,7 @@ Uma API RESTful para gerenciamento de bibliotecas, desenvolvida com Laravel 12.
 
 ## Disponível em
 
-- [https://api.biblioteca.juanfariasdev.com.br](https://api.biblioteca.juanfariasdev.com.br)
+- [https://api-biblioteca.juanfariasdev.com.br](https://api.biblioteca.juanfariasdev.com.br)
 
 ## 📋 Pré-requisitos
 
