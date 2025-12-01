@@ -27,7 +27,7 @@ class BookResource extends JsonResource
             "images" => $this->images->map(function ($image): array {
                 return [
                     "id" => $image->id,
-                    'image' => Storage::url("books_images/$image->image")
+                    'image' => Storage::url($image->image)
                 ];
             })
         ];

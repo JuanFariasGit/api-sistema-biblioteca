@@ -23,17 +23,13 @@ class BookImages extends Model
     public static function booted()
     {
         static::creating(function($model) {
-            $name = $model->image->hashName();
-
-            $model->image->storeAs('books_images', $name);
-
-            $model->image = $name;
+            $model->image = $model->image->store('books_images');
             
             $model->user_id = auth('api')->id();
         });
 
         static::forceDeleting(function($model) {
-            Storage::disk('public')->delete('books_images/' . $model->image);
+            Storage::disk('public')->delete($model->image);
         });
     }
 }
