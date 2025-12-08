@@ -1,4 +1,4 @@
-# 📚 API SISTEMA BIBIBLIOTECA 📚
+# 📚 API SISTEMA BIBIBLIOTECA
 
 Uma API RESTful para gerenciamento de bibliotecas, desenvolvida com Laravel 12.
 
