@@ -33,7 +33,6 @@ it('should be a pagination', function () {
                     'created_at',
                     'updated_at',
                     'deleted_at',
-                    'books'
                 ]
             ],
             'links' => [],
