@@ -60,7 +60,7 @@ cp .env.example .env
 
 ### 8. Testar a API
 ```bash
-./vendor/bin/sail artisan test ./tests/Feature/
+./vendor/bin/sail artisan test
 ```
 
 A API estará disponível em `http://localhost`
