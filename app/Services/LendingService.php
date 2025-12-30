@@ -15,6 +15,7 @@ class LendingService extends Service
     public function paginate(int $perPage = 10): LengthAwarePaginator
     {
         return $this->lending::authApiUser()
+            ->orderByDesc('id')
             ->paginate($perPage);
     }
 }

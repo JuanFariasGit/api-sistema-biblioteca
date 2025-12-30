@@ -16,6 +16,7 @@ class BookService extends Service
     {
         return $this->book::authApiUser()
             ->with(['publisher', 'images'])
+            ->orderByDesc('id')
             ->paginate($perPage);
     }
-} 
+}

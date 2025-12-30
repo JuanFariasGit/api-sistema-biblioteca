@@ -15,6 +15,7 @@ class PublisherService extends Service
     public function paginate(int $perPage = 10): LengthAwarePaginator
     {
         return $this->publisher::authApiUser()
+            ->orderByDesc('id')
             ->paginate($perPage);
     }
-} 
+}
