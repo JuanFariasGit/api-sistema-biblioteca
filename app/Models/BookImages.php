@@ -23,7 +23,7 @@ class BookImages extends Model
     public static function booted()
     {
         static::creating(function($model) {
-            $model->image = $model->image->store('books_images');
+            $model->image = $model->image->store('books_images', 'public');
             
             $model->user_id = auth('api')->id();
         });
